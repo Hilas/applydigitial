@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker'; // this is for the faker library import 
 
 class PaymentPage {
     elements = {
@@ -13,33 +13,33 @@ class PaymentPage {
         continueButton: () => cy.get('[data-qa="continue-button"]'),
     };
 
-    fillPaymentDetails() {
-        const cardName = faker.person.fullName();
-        const cardNumber = faker.finance.creditCardNumber();
-        const cvc = faker.finance.creditCardCVV();
-        const expiryMonth = faker.number.int({ min: 1, max: 12 }).toString().padStart(2, '0');
-        const expiryYear = new Date().getFullYear() + 2;
+    fillPaymentDetails() { // This will fill the fake card details in the form
+        const cardName = faker.person.fullName(); // Generate a random full name
+        const cardNumber = faker.finance.creditCardNumber(); // Generate a random card number
+        const cvc = faker.finance.creditCardCVV(); // Generate a random CVC code
+        const expiryMonth = faker.number.int({ min: 1, max: 12 }).toString().padStart(2, '0'); // Generate a random month (01-12)
+        const expiryYear = new Date().getFullYear() + 2; // Use a year two years in the future
 
-        this.elements.nameOnCard().type(cardName);
-        this.elements.cardNumber().type(cardNumber);
-        this.elements.cvc().type(cvc);
-        this.elements.expiryMonth().type(expiryMonth);
-        this.elements.expiryYear().type(expiryYear.toString());
+        this.elements.nameOnCard().type(cardName); // Enter the cardholder's name
+        this.elements.cardNumber().type(cardNumber); // Enter the card number
+        this.elements.cvc().type(cvc); // Enter the CVC code
+        this.elements.expiryMonth().type(expiryMonth); // Enter the expiration month
+        this.elements.expiryYear().type(expiryYear.toString()); // Enter the expiration year
     }
 
-    submitPayment() {
+    submitPayment() { // Trigger the submit payment button
         this.elements.payButton().click();
     }
 
-    verifySuccessMessage() {
+    verifySuccessMessage() { // This is for verify the success message after trikker submitPayment()
         this.elements.successMessage().should('be.visible').and('contain', 'Your order has been placed successfully!');
     }
 
-    verifyOrderPlaced() {
+    verifyOrderPlaced() { // This is for verify the next page after submit the payment with the text Order Placed
         this.elements.orderPlacedMessage().should('be.visible').and('contain', 'Order Placed!');
     }
 
-    clickContinue() {
+    clickContinue() { // Trigger a continue button
         this.elements.continueButton().click();
     }
 }

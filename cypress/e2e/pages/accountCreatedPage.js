@@ -4,13 +4,13 @@ class AccountCreatedPage {
         continueButton: () => cy.get('[data-qa="continue-button"]'),
     };
 
-    validateAccountCreation() {
+    validateAccountCreation() { // this will validate the acount created is displayed and contians the expected text
         this.elements.accountCreatedMessage()
             .should('be.visible')
             .and('contain.text', 'Account Created!');
     }
 
-    clickContinue() {
+    clickContinue() { // click the continue button to navigate to the next page
         this.elements.continueButton().click();
     }
 }

@@ -11,26 +11,32 @@ class ViewCartPage {
         registerLoginLink: () => cy.get('#checkoutModal').find('a[href="/login"]'),
     };
 
-    validateCart(productName, productPrice) {
-        const selectedQuantity = Cypress.env('selectedQuantity');
-        this.elements.cartProductRow().should('exist');
-        this.elements.cartProductName().should('have.text', productName).then(() => {
-            cy.log(`✅ Product Name Validated: ${productName}`);
-        });
-        this.elements.cartQuantity().should('have.text', `${selectedQuantity}`).then(() => {
-            cy.log(`✅ Quantity Validated: ${selectedQuantity}`);
-        });
-        const expectedTotal = selectedQuantity * productPrice;
-        this.elements.cartTotal().should('have.text', `Rs. ${expectedTotal}`).then(() => {
-            cy.log(`✅ Total Validated: Rs. ${expectedTotal}`);
-        });
+    validateCart(productName, productPrice) { // validate the cart contents and prices, i use logs for print in the console for optional way
+        const selectedQuantity = Cypress.env('selectedQuantity'); // Retrieve the selected quantity from environment variables
+        this.elements.cartProductRow().should('exist'); // Verify the product row exists
+        this.elements.cartProductName()
+            .should('have.text', productName) // Validate the product name
+            .then(() => {
+                cy.log(`✅ Product Name Validated: ${productName}`);
+            });
+        this.elements.cartQuantity()
+            .should('have.text', `${selectedQuantity}`) // Validate the quantity matches
+            .then(() => {
+                cy.log(`✅ Quantity Validated: ${selectedQuantity}`);
+            });
+        const expectedTotal = selectedQuantity * productPrice; // Calculate the expected total price
+        this.elements.cartTotal()
+            .should('have.text', `Rs. ${expectedTotal}`) // Validate the total price matches
+            .then(() => {
+                cy.log(`✅ Total Validated: Rs. ${expectedTotal}`);
+            });
     }
 
-    clickProceedToCheckout() {
+    clickProceedToCheckout() { // Clicks the "Proceed to Checkout" button to navigate to the checkout page.
         this.elements.proceedToCheckoutButton().click();
     }
 
-    validateCheckoutModal() {
+    validateCheckoutModal() { // Validates that the checkout modal is displayed correctly.
         productDetailPage.elements.modalProductAdded()
             .should('be.visible')
             .within(() => {
@@ -39,7 +45,7 @@ class ViewCartPage {
             });
     }
 
-    clickRegisterLoginLink() {
+    clickRegisterLoginLink() { // Clicks the "Register / Login" link in the checkout modal to navigate to the login page
         this.elements.registerLoginLink()
             .should('exist')
             .should('be.visible')

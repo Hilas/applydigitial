@@ -1,6 +1,6 @@
 Feature: Checkout Flow
-
-Scenario Outline: Add item to checkout without registered user in <resolution>
+# this is the first scenario, i make with outline for the viewports in desktop and mobile resolution, there's other ways to do this
+Scenario Outline: Add item to checkout without registered user in <resolution> 
     Given I enter to the website "<resolution>"
     When I enter the third product shown in the product list
     And I add the product to the cart
@@ -12,6 +12,7 @@ Scenario Outline: Add item to checkout without registered user in <resolution>
         |  Desktop     |
         |  Mobile      |
 
+# this is the optional scenario, make the first scenario and add the optional steps with viewports options
 Scenario Outline: Add item to checkout with new user register <resolution>
     Given I enter to the website "<resolution>"
     When I enter the third product shown in the product list

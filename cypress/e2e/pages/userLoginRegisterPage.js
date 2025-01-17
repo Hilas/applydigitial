@@ -6,18 +6,19 @@ class UserLoginRegisterPage {
         signupButton: () => cy.get('[data-qa="signup-button"]'),
     };
 
-    validatePageIsPresent() {
+    validatePageIsPresent() { // Validates that the "New User Signup!" header is visible on the page.
         this.elements.signupHeader().should('be.visible');
     }
 
-    fillSignupForm() {
-        this.validatePageIsPresent();
-        const faker = require('@faker-js/faker');
-        const fakeName = faker.faker.name.fullName();
-        const fakeEmail = faker.faker.internet.email();
+    fillSignupForm() { // Fills the signup form with fake data and submits it with faker library
+        this.validatePageIsPresent(); // Validate the page is present before interacting with elements
 
-        this.elements.signupNameField().type(fakeName);
-        this.elements.signupEmailField().type(fakeEmail);
+        const faker = require('@faker-js/faker'); // this is another way to import Faker for generating test data in the method
+        const fakeName = faker.faker.name.fullName(); // Generate a random full name
+        const fakeEmail = faker.faker.internet.email(); // Generate a random email address
+
+        this.elements.signupNameField().type(fakeName); // Enter the fake name
+        this.elements.signupEmailField().type(fakeEmail); // Enter the fake email
         this.elements.signupButton().click();
     }
 }

@@ -28,21 +28,25 @@ class UserRegisterFormPage {
         createAccountButton: () => cy.get('[data-qa="create-account"]'),
     };
 
-    fillAccountForm() {
+    fillAccountForm() { // Fills the account creation form with random data and submits it using faker library
         const { faker } = require('@faker-js/faker');
         
+        // Generate random credentials
         const randomEmail = faker.internet.email();
         const randomPassword = faker.internet.password();
 
+        // Store credentials for future use
         this.generatedCredentials.email = randomEmail;
         this.generatedCredentials.password = randomPassword;
 
+        // Select a random title
         if (Math.random() > 0.5) {
             this.elements.titleMrRadio().check({ force: true });
         } else {
             this.elements.titleMrsRadio().check({ force: true });
         }
 
+        // Fill the form fields
         this.elements.passwordField().type(randomPassword);
 
         const randomDay = String(faker.number.int({ min: 1, max: 31 }));
@@ -65,11 +69,10 @@ class UserRegisterFormPage {
         this.elements.stateField().type(faker.location.state());
         this.elements.cityField().type(faker.location.city());
         this.elements.zipcodeField().type(faker.location.zipCode());
-        this.elements.mobileNumberField().type(faker.phone.number('##########'))
-        this.elements.createAccountButton().click();
+        this.elements.mobileNumberField().type(faker.phone.number('##########'));
     }
 
-    getCredentials() {
+    getCredentials() { // Retrieves the generated email and password after form submission.
         return this.generatedCredentials;
     }
 }

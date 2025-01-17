@@ -9,14 +9,16 @@ import { accountCreatedPage } from '../pages/accountCreatedPage';
 import { checkoutPage } from '../pages/checkoutPage';
 import { paymentPage } from '../pages/paymentPage';
 
+// this is the imports for the Pages to import the methods that will use here
+
 let productName;
 let productPrice;
 
 Given("I enter to the website {string}", (resolution) => {
     if (resolution == 'Desktop') {
-        cy.viewport(1280, 720);
+        cy.viewport(1280, 720); // this will trigger the desktop viewport
     } else{
-        cy.viewport(375, 667);
+        cy.viewport(375, 667); // this will trigger the mobile viewport
     }
     cy.visit("https://automationexercise.com/");
 });

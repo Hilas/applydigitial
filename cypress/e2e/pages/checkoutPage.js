@@ -7,20 +7,20 @@ class CheckoutPage {
         placeOrderButton: () => cy.get('.btn.btn-default.check_out'),
     };
 
-    validateProductAndTotal() {
+    validateProductAndTotal() { //Validates that the product total is correct by ensuring the total price matches the product price multiplied by the quantity.
         this.elements.productPrice().invoke('text').then((priceText) => {
-            const price = parseFloat(priceText.replace('Rs. ', ''));
+            const price = parseFloat(priceText.replace('Rs. ', '')); // Extract price as a float
             this.elements.productQuantity().invoke('text').then((quantityText) => {
-                const quantity = parseInt(quantityText, 10);
+                const quantity = parseInt(quantityText, 10); // Extract quantity as an integer
                 this.elements.productTotal().invoke('text').then((totalText) => {
-                    const total = parseFloat(totalText.replace('Rs. ', ''));
-                    expect(total).to.equal(price * quantity);
+                    const total = parseFloat(totalText.replace('Rs. ', '')); // Extract total as a float
+                    expect(total).to.equal(price * quantity);// Assert that total equals price multiplied by quantity
                 });
             });
         });
     }
 
-    placeOrder() {
+    placeOrder() { // this will trigger the "Place Order" button click
         this.elements.placeOrderButton().click();
     }
 }

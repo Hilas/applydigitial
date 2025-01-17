@@ -5,15 +5,15 @@ class HomePage {
         logoutButton: () => cy.get('.shop-menu').contains('Logout'),
     };
 
-    enterProductPage() {
+    enterProductPage() { // got to product menu option
         this.elements.productMenu().click();
     }
 
-    goToCart() {
+    goToCart() { // go to cart menu option
         this.elements.cartMenu().click();
     }
 
-    logout() {
+    logout() { // logout menu option
         this.elements.logoutButton().click();
     }
 }
