@@ -1,115 +1,181 @@
-# Apply Digital - LATAM QA Interview Test
+# 🚀 Apply Digital - LATAM QA Interview Test
 
-## Project Overview
-This project automates a critical user flow for the [Automation Exercise](https://automationexercise.com/) website using Cypress. The automation script covers a specific user journey for a clothing store, adaptable to both Desktop and Mobile viewports. It demonstrates core QA practices, including modularity, reusability, and clarity, and optionally incorporates accessibility and performance testing.
+[![Node.js](https://img.shields.io/badge/Node.js-v14%2B-green)](https://nodejs.org/)
+[![npm](https://img.shields.io/badge/npm-latest-blue)](https://www.npmjs.com/)
+[![Cypress](https://img.shields.io/badge/Cypress-13.17.0-brightgreen)](https://www.cypress.io/)
+[![Lighthouse](https://img.shields.io/badge/Lighthouse-CLI-yellow)](https://developers.google.com/web/tools/lighthouse/)
+[![Mochawesome](https://img.shields.io/badge/Mochawesome-7.1.3-orange)](https://www.npmjs.com/package/mochawesome)
 
-## Requirements
-- Node.js (v14 or later)
-- npm (Node Package Manager)
-- Cypress (installed via npm)
+---
 
+## 🌟 Project Overview
+This project automates a critical user flow for the [Automation Exercise](https://automationexercise.com/) website using Cypress. The automation script covers a specific user journey for a clothing store, adaptable to both Desktop and Mobile viewports. It demonstrates:
+
+- 🧩 Modularity
+- 🔄 Reusability
+- ✨ Clarity
+
+Optionally, the project incorporates **Accessibility** and **Performance** testing.
+
+---
+
+## 📋 Requirements
+- 🛠️ **Node.js** (v14 or later)
+- 📦 **npm** (Node Package Manager)
+- ✅ **Cypress** (installed via npm)
+ 
 Optional tools:
-- Lighthouse CLI (for accessibility and performance testing)
+- 🌐 **Lighthouse CLI** (for accessibility and performance testing)
 
-## Installation
-1. Clone this repository:
+---
+
+## 🔧 Installation
+1. **Clone the repository:**
    ```bash
    git clone git@github.com:Hilas/applydigitial.git
    ```
-2. Navigate to the project directory:
+
+2. **Navigate to the project directory:**
    ```bash
    cd applydigital
    ```
-3. Install dependencies:
+
+3. **Install dependencies:**
    ```bash
    npm install
    ```
 
-## Running the Tests
-1. Open Cypress Test Runner:
-   ```bash
-   npx cypress open
-   ```
-   Select the desired test file and execute it.
+---
 
-2. Run tests in headless mode:
+## 🧪 Running the Tests
+
+### 🚀 Full Test Execution
+Run the entire testing process, including generating Lighthouse reports and executing Cypress tests, using:
+```bash
+npm run full:test
+```
+This script performs:
+1. ✅ Executes Lighthouse for **accessibility** (`./accessibility-report.html`).
+2. ✅ Executes Lighthouse for **performance** (`./performance-report.html`).
+3. ✅ Runs Cypress tests in headless mode.
+4. ✅ Prints links to the generated reports in the console.
+
+### 🎯 Individual Test Commands
+- **Open Cypress Test Runner:**
    ```bash
-   npx cypress run
+   npm run cypress:open
+   ```
+- **Run Cypress tests in headless mode:**
+   ```bash
+   npm run cypress:run
+   ```
+- **Generate Lighthouse Accessibility Report:**
+   ```bash
+   npm run lighthouse:accessibility
+   ```
+- **Generate Lighthouse Performance Report:**
+   ```bash
+   npm run lighthouse:performance
    ```
 
-3. To execute optional Lighthouse tests (if configured):
-   ```bash
-   lighthouse https://automationexercise.com/ --output json --output html
-   ```
+---
 
-## User Flow
+## 🔍 User Flow
+
 ### Preconditions
 - The website is accessible.
-- The required dependencies are installed.
+- Required dependencies are installed.
 
-### Test Steps ( *scenario: Add item to checkout without registered user in <resolution>*)
+### Test Steps (*Add item to checkout without registered user*):
 1. Navigate to the website.
 2. Go to the **Products** section.
-3. Choose the third product from the product list.
-4. Enter a random quantity between 1 and 20.
+3. Choose the third product from the list.
+4. Enter a random quantity (1-20).
 5. Add the product to the cart.
 6. Proceed to checkout.
 
-### Optional steps (*scenario: Add item to checkout with new user register <resolution>*)
+### Optional Steps (*Add item to checkout with new user*):
 7. Register a new user using Faker-generated data.
 8. Confirm the order.
 9. Log out.
 
 ### Expected Results
-- The product is successfully added to the cart with the correct quantity.
-- Validates the total price of the quantity of products added in the cart
-- The checkout process completes without errors.
+- Product is added to the cart with the correct quantity.
+- Validates the total price in the cart.
+- Checkout completes successfully.
 - Optional steps execute as expected.
 
-## Project Structure
-- `cypress/`: Contains test files, fixtures, and support utilities.
-- `cypress/e2e/`: Holds the main test scripts.
-- `cypress/support/features`: Contains Gherkin feature files describing the test scenarios.
-- `cypress/support/pages`: Implements the Page Object Model (POM) design pattern, encapsulating page-specific interactions and elements.
-- `cypress/support/step_definitions`: Maps Gherkin steps to Cypress commands, enabling behavior-driven testing (BDD).
-- `package.json`: Manages project dependencies.
+---
 
-## Tools and Libraries
-- **Cypress**: Framework for end-to-end testing.
-- **Faker.js**: Generates random data for test inputs.
-- **Lighthouse** Measures accessibility and performance.
-- **mochawesome**: Generates detailed test reports.
+## 📂 Project Structure
 
-## Reporting
+| Folder/File                     | Description                                    |
+|--------------------------------|------------------------------------------------|
+| `cypress/`                     | Contains test files, fixtures, and utilities. |
+| `cypress/e2e/`                 | Holds the main test scripts.                  |
+| `cypress/support/features`     | Gherkin feature files describing scenarios.   |
+| `cypress/support/pages`        | Implements the Page Object Model (POM).       |
+| `cypress/support/step_definitions` | Maps Gherkin steps to Cypress commands.   |
+| `package.json`                 | Manages project dependencies and scripts.     |
 
-### Mochawesome Report
-Test results are available in the `mochawesome-report` folder. To view the report:
-1. Run the tests.
-2. Open the generated HTML report:
+---
+
+## 🛠️ Tools and Libraries
+- **Cypress**: 🧪 Framework for end-to-end testing.
+- **Faker.js**: 🎲 Generates random data for test inputs.
+- **Lighthouse**: 🌐 Measures accessibility and performance.
+- **Mochawesome**: 📊 Generates detailed test reports.
+
+---
+
+## 📊 Reporting
+
+### 🧾 Full Test Summary
+After running `npm run full:test`, the console will display links to the generated reports:
+
+- 📊 **Accessibility Report:** `./accessibility-report.html`
+- 📈 **Performance Report:** `./performance-report.html`
+- 🧪 **Mochawesome Report:** `./cypress/reports/index.html`
+
+### 📋 Mochawesome Report
+Test results are available in the `mochawesome-report` folder:
+```bash
+open mochawesome-report/index.html
+```
+In Windows:
+```bash
+start mochawesome-report/index.html
+```
+
+### 🌐 Lighthouse Reports
+
+#### Accessibility Report
+1. Run:
    ```bash
-   open mochawesome-report/index.html
+   npm run lighthouse:accessibility
+   ```
+2. Open:
+   ```bash
+   open ./accessibility-report.html
+   ```
+   On Windows:
+   ```bash
+   start ./accessibility-report.html
    ```
 
-### Lighthouse Reports
-Accessibility and performance reports generated by Lighthouse are available as HTML files. To open these reports:
+#### Performance Report
+1. Run:
+   ```bash
+   npm run lighthouse:performance
+   ```
+2. Open:
+   ```bash
+   open ./performance-report.html
+   ```
+   On Windows:
+   ```bash
+   start ./performance-report.html
+   ```
 
-1. **Accessibility Report:**
-   - Run Lighthouse for accessibility:
-     ```bash
-     lighthouse https://automationexercise.com/ --only-categories=accessibility --output html --output-path ./accessibility-report.html
-     ```
-   - Open the report:
-     ```bash
-     open ./accessibility-report.html
-     ```
-
-2. **Performance Report:**
-   - Run Lighthouse for performance:
-     ```bash
-     lighthouse https://automationexercise.com/ --only-categories=performance --output html --output-path ./performance-report.html
-     ```
-   - Open the report:
-     ```bash
-     open ./performance-report.html
-     ```
-
+---
+# Thank you for the opportunity. I hope you like it.
