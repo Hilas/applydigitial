@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "lighthouse:accessibility": "lighthouse https://automationexercise.com/ --only-categories=accessibility --output html --output-path ./accessibility-report.html",
+    "lighthouse:performance": "lighthouse https://automationexercise.com/ --only-categories=performance --output html --output-path ./performance-report.html",
+    "full:test": "npm run lighthouse:accessibility && npm run lighthouse:performance && npm run cypress:run && node post-test-summary.js"
   },
   "author": "",
   "license": "ISC",

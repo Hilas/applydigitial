@@ -70,6 +70,7 @@ class UserRegisterFormPage {
         this.elements.cityField().type(faker.location.city());
         this.elements.zipcodeField().type(faker.location.zipCode());
         this.elements.mobileNumberField().type(faker.phone.number('##########'));
+        this.elements.createAccountButton().click();
     }
 
     getCredentials() { // Retrieves the generated email and password after form submission.
